@@ -1,0 +1,13 @@
+
+sh ./cluster-autoscaler-permission-generator.sh cluster_name="cps-hcl-aks-workshop1" resource_group="jenkins_workshop"
+
+kubectl get nodes -o json | jq '.items[0].metadata.labels.agentpool'
+
+helm install --dry-run --debug ./aks-cluster-autoscaler --set nodes.min=5,nodes.max=10,nodes.agentpool=test1
+
+bash cluster-autoscaler.sh cluster_name="cps-hcl-aks-workshop2" resource_group="jenkins_workshop" min_nodes=5 max_nodes=10
+
+
+helm install ./aks-cluster-autoscaler --set rbac.create=false
+
+helm install --dry-run --debug ./aks-cluster-autoscaler

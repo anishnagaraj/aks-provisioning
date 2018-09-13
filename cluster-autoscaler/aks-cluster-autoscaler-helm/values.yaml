@@ -1,0 +1,13 @@
+# Default values for aks-nodes-autoscaler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nodes:
+  min: 3
+  max: 10
+  agentpool: default
+
+image:
+  repository: k8s.gcr.io/cluster-autoscaler
+  tag: v1.2.2
+  pullPolicy: IfNotPresent
