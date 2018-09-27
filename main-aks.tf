@@ -75,7 +75,7 @@ resource "null_resource" "provision" {
   }
 
   provisioner "local-exec" {
-    command = "bash cluster-autoscaler-using-sed.sh cluster_name=${azurerm_kubernetes_cluster.k8s.name} resource_group=${azurerm_kubernetes_cluster.k8s.resource_group_name} min_nodes=${var.min_agent_count} max_nodes=1${var.max_agent_count}"
+    command = "bash cluster-autoscaler-using-sed.sh cluster_name=${azurerm_kubernetes_cluster.k8s.name} resource_group=${azurerm_kubernetes_cluster.k8s.resource_group_name} min_nodes=${var.min_agent_count} max_nodes=${var.max_agent_count}"
   }
 
    provisioner "local-exec" {
